@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UP PET 2026 - स्टैटिक GK प्रैक्टिस क्विज़</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-family);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Header & Branding */
+    .brand-header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-top: 10px;
+    }
+    .brand-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #3730a3;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .main-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+    .sub-title {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    /* Start Screen */
+    .quote-box {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-left: 5px solid var(--primary-light);
+      padding: 16px;
+      border-radius: 10px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .quote-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #1e40af;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .quote-author {
+      font-size: 0.85rem;
+      color: #3b82f6;
+      margin-top: 6px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus {
+      border-color: var(--primary-light);
+    }
+
+    .quiz-rules {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #475569;
+    }
+    .quiz-rules ul {
+      padding-left: 20px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      width: 100%;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Quiz Bar & Info */
+    .quiz-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .q-counter {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fee2e2;
+      color: #dc2626;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid #fca5a5;
+      transition: background 0.3s;
+    }
+    .timer-badge.safe {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+    }
+    .timer-badge.warning {
+      background: #fef3c7;
+      color: #b45309;
+      border-color: #fde68a;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Question & Options */
+    .question-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .option-card {
+      display: flex;
+      align-items: center;
+      padding: 13px 16px;
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .option-card:hover:not(.locked) {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      transform: translateX(4px);
+    }
+    .option-prefix {
+      width: 32px;
+      height: 32px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-right: 12px;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    .option-text {
+      flex: 1;
+    }
+
+    /* State Styles for Options */
+    .option-card.correct {
+      background: #ecfdf5 !important;
+      border-color: var(--success) !important;
+      color: #065f46 !important;
+    }
+    .option-card.correct .option-prefix {
+      background: var(--success);
+      color: #ffffff;
+      border-color: var(--success);
+    }
+    .option-card.incorrect {
+      background: #fef2f2 !important;
+      border-color: var(--danger) !important;
+      color: #991b1b !important;
+    }
+    .option-card.incorrect .option-prefix {
+      background: var(--danger);
+      color: #ffffff;
+      border-color: var(--danger);
+    }
+    .option-card.locked {
+      cursor: default;
+    }
+
+    /* Explanation Box */
+    .explanation-box {
+      display: none;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 14px;
+      margin-bottom: 18px;
+      font-size: 0.92rem;
+      color: #166534;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+    }
+    .explanation-box.wrong-alert {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+    /* Navigation Buttons */
+    .quiz-footer-nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .quiz-footer-nav .btn {
+      flex: 1;
+    }
+
+    /* Result Screen */
+    .result-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+    .score-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .score-total {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    .result-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+    .stat-lbl {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Leaderboard Table */
+    .leaderboard-section {
+      margin-top: 10px;
+    }
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    th {
+      background: #f8fafc;
+      padding: 12px 14px;
+      font-weight: 700;
+      color: #475569;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: #334155;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:nth-child(even) {
+      background: #fafafa;
+    }
+    .rank-cell {
+      font-weight: 800;
+      width: 48px;
+    }
+    .rank-1 { color: #d97706; }
+    .rank-2 { color: #64748b; }
+    .rank-3 { color: #b45309; }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 10px; }
+      .card { padding: 18px 14px; }
+      .main-title { font-size: 1.35rem; }
+      .question-title { font-size: 1.05rem; }
+      .score-circle { width: 105px; height: 105px; }
+      .score-num { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="brand-header">
+      <div class="brand-badge">SUPER KIDS STUDY CENTRE</div>
+      <h1 class="main-title">UP PET 2026 : स्टैटिक GK टेस्ट</h1>
+      <p class="sub-title">महत्वपूर्ण दिवस • देश व राजधानी • मुद्रा • सामान्य ज्ञान (50 MCQs)</p>
+    </header>
+
+    <!-- SECTION 1: START SCREEN -->
+    <div id="start-screen" class="card">
+      <div class="quote-box">
+        <div class="quote-text">
+          "मंजिल उन्हीं को मिलती है, जिनके सपनों में जान होती है।<br>
+          पंख से कुछ नहीं होता, हौसलों से उड़ान होती है॥"
+        </div>
+        <div class="quote-author">— लक्ष्य UP PET 2026</div>
+      </div>
+
+      <div class="form-group">
+        <label for="student-name" class="form-label">विद्यार्थी का नाम दर्ज करें:</label>
+        <input type="text" id="student-name" class="form-input" placeholder="अपना पूरा नाम लिखें (उदा. राहुल कुमार)" autocomplete="off">
+        <div id="name-error" style="color: var(--danger); font-size: 0.85rem; margin-top: 5px; display: none;">
+          कृपया आगे बढ़ने के लिए अपना नाम लिखें।
+        </div>
+      </div>
+
+      <div class="quiz-rules">
+        <strong>📋 क्विज़ नियम एवं निर्देश:</strong>
+        <ul style="margin-top: 6px;">
+          <li>कुल <strong>50 प्रश्न</strong> हैं (Static GK: दिवस, राजधानी, मुद्रा आदि)।</li>
+          <li>प्रत्येक प्रश्न के लिए <strong>60 सेकंड का समय</strong> मिलेगा।</li>
+          <li>समय समाप्त होने पर प्रश्न स्वतः आगे बढ़ जाएगा और अनुत्तरित माना जाएगा।</li>
+          <li>उत्तर चुनते ही सही/गलत उत्तर तथा संक्षिप्त विवरण दिखाई देगा।</li>
+          <li>क्विज़ समाप्त होने पर आपका स्कोर <strong>Leaderboard</strong> में सुरक्षित होगा।</li>
+        </ul>
+      </div>
+
+      <button id="start-btn" class="btn btn-primary" onclick="startQuiz()">क्विज़ शुरू करें 🚀</button>
+      <button class="btn btn-secondary" style="margin-top: 10px;" onclick="showLeaderboardFromStart()">🏆 लीडरबोर्ड देखें</button>
+    </div>
+
+    <!-- SECTION 2: QUIZ SCREEN -->
+    <div id="quiz-screen" class="card hidden">
+      <div class="quiz-topbar">
+        <div class="q-counter" id="q-counter">प्रश्न 1 / 50</div>
+        <div class="timer-badge safe" id="timer-badge">
+          <span>⏱️</span>
+          <span id="timer-text">60s</span>
+        </div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <div class="question-title" id="question-text">
+        प्रश्न यहाँ लोड होगा...
+      </div>
+
+      <div class="options-grid" id="options-container"></div>
+
+      <div class="explanation-box" id="explanation-box"></div>
+
+      <div class="quiz-footer-nav">
+        <button id="prev-btn" class="btn btn-secondary" onclick="prevQuestion()" disabled>← पिछला</button>
+        <button id="next-btn" class="btn btn-primary" onclick="nextQuestion()">अगला प्रश्न →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 3: RESULT SCREEN -->
+    <div id="result-screen" class="card hidden">
+      <div class="result-header">
+        <div class="score-circle">
+          <span class="score-num" id="res-score">0</span>
+          <span class="score-total">/ 50 अंक</span>
+        </div>
+        <div id="res-badge" class="result-badge" style="background: #e0f2fe; color: #0369a1;">उत्कृष्ट!</div>
+        <h2 id="res-student-name" style="font-size: 1.3rem; margin-bottom: 4px;">विद्यार्थी का नाम</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;" id="res-date-time"></p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-val" id="res-percent" style="color: var(--primary);">0%</div>
+          <div class="stat-lbl">सटीकता (Percentage)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="res-time" style="color: #6366f1;">00:00</div>
+          <div class="stat-lbl">कुल समय (Total Time)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="res-correct" style="color: var(--success);">0</div>
+          <div class="stat-lbl">सही उत्तर (Correct)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="res-wrong" style="color: var(--danger);">0</div>
+          <div class="stat-lbl">गलत / छूटे (Incorrect/Skipped)</div>
+        </div>
+      </div>
+
+      <div class="leaderboard-section">
+        <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--primary);">🏆 शीर्ष स्कोरर (Leaderboard)</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>रैंक</th>
+                <th>नाम</th>
+                <th>स्कोर</th>
+                <th>प्रतिशत</th>
+                <th>समय</th>
+                <th>दिनांक</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 16px;">
+        <button class="btn btn-primary" onclick="restartQuiz()">🔄 पुनः क्विज़ शुरू करें</button>
+        <button class="btn btn-secondary" onclick="clearLeaderboard()">🗑️ लीडरबोर्ड इतिहास साफ करें</button>
+      </div>
+    </div>
+
+    <!-- Standalone Leaderboard Modal Screen -->
+    <div id="leaderboard-modal" class="card hidden">
+      <h2 style="font-size: 1.3rem; color: var(--primary); margin-bottom: 14px; text-align: center;">🏆 लीडरबोर्ड (Leaderboard)</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>रैंक</th>
+              <th>नाम</th>
+              <th>स्कोर</th>
+              <th>प्रतिशत</th>
+              <th>समय</th>
+              <th>दिनांक</th>
+            </tr>
+          </thead>
+          <tbody id="modal-leaderboard-body"></tbody>
+        </table>
+      </div>
+      <button class="btn btn-primary" onclick="closeLeaderboardModal()">वापस जाएँ</button>
+    </div>
+
+  </div>
+
+  <script>
+    // 50 UP PET STATIC GK QUESTIONS (दिवस, राजधानी, मुद्रा, प्रमुख संस्थान व भूगोल)
+    const quizData = [
+      {
+        q: "1. 'अंतर्राष्ट्रीय योग दिवस' (International Yoga Day) प्रतिवर्ष किस तिथि को मनाया जाता है?",
+        options: ["21 मई", "21 जून", "5 जून", "11 जुलाई"],
+        correct: 1,
+        exp: "अंतर्राष्ट्रीय योग दिवस प्रत्येक वर्ष 21 जून को मनाया जाता है। इसकी शुरुआत वर्ष 2015 में हुई थी।"
+      },
+      {
+        q: "2. जापान की आधिकारिक राष्ट्रीय मुद्रा (Currency) क्या है?",
+        options: ["युआन", "वॉन", "येन", "रिंगित"],
+        correct: 2,
+        exp: "जापान की मुद्रा 'येन' (Yen) है तथा जापान की राजधानी 'टोक्यो' है।"
+      },
+      {
+        q: "3. पड़ोसी देश बांग्लादेश की राजधानी कौन-सी है?",
+        options: ["काठमांडू", "थिम्फू", "ढाका", "कोलंबो"],
+        correct: 2,
+        exp: "बांग्लादेश की राजधानी 'ढाका' है और इसकी मुद्रा 'टका' (Taka) है।"
+      },
+      {
+        q: "4. 'विश्व पर्यावरण दिवस' (World Environment Day) कब मनाया जाता है?",
+        options: ["22 अप्रैल", "5 जून", "16 सितंबर", "22 मार्च"],
+        correct: 1,
+        exp: "प्रतिवर्ष 5 जून को विश्व पर्यावरण दिवस मनाया जाता है। इसकी शुरुआत 1974 में हुई थी।"
+      },
+      {
+        q: "5. भारत में 'राष्ट्रीय खेल दिवस' मेजर ध्यानचंद की स्मृति में किस तारीख को मनाया जाता है?",
+        options: ["29 अगस्त", "15 अगस्त", "14 नवंबर", "12 जनवरी"],
+        correct: 0,
+        exp: "हॉकी के जादूगर मेजर ध्यानचंद के जन्मदिवस पर 29 अगस्त को राष्ट्रीय खेल दिवस मनाया जाता है।"
+      },
+      {
+        q: "6. थाइलैंड की आधिकारिक मुद्रा क्या है?",
+        options: ["क्यात", "डोंग", "रुपया", "बाहत (Baht)"],
+        correct: 3,
+        exp: "थाइलैंड की मुद्रा 'बाहत' (Baht) है और इसकी राजधानी 'बैंकॉक' है।"
+      },
+      {
+        q: "7. एक सींग वाले गैंडे के लिए प्रसिद्ध 'काजीरंगा राष्ट्रीय उद्यान' किस राज्य में स्थित है?",
+        options: ["असम", "पश्चिम बंगाल", "मध्य प्रदेश", "उत्तराखंड"],
+        correct: 0,
+        exp: "काजीरंगा राष्ट्रीय उद्यान असम में ब्रह्मपुत्र नदी के किनारे स्थित है।"
+      },
+      {
+        q: "8. 'संयुक्त राष्ट्र संघ' (UN) का मुख्यालय कहाँ स्थित है?",
+        options: ["जिनेवा", "न्यूयॉर्क", "पेरिस", "वाशिंगटन डी.सी."],
+        correct: 1,
+        exp: "संयुक्त राष्ट्र संघ (UN) का मुख्यालय न्यूयॉर्क (USA) में स्थित है। इसकी स्थापना 24 अक्टूबर 1945 को हुई थी।"
+      },
+      {
+        q: "9. 'अंतर्राष्ट्रीय महिला दिवस' (International Women's Day) कब मनाया जाता है?",
+        options: ["8 फरवरी", "8 मार्च", "13 फरवरी", "24 जनवरी"],
+        correct: 1,
+        exp: "प्रतिवर्ष 8 मार्च को अंतर्राष्ट्रीय महिला दिवस मनाया जाता है।"
+      },
+      {
+        q: "10. भारत के पड़ोसी देश नेपाल की राजधानी क्या है?",
+        options: ["पोखरा", "थिम्फू", "काठमांडू", "विराटनगर"],
+        correct: 2,
+        exp: "नेपाल की राजधानी 'काठमांडू' है तथा यहाँ की मुद्रा नेपाली रुपया है।"
+      },
+      {
+        q: "11. 'विश्व स्वास्थ्य संगठन' (WHO) का मुख्यालय किस शहर में स्थित है?",
+        options: ["जिनेवा (स्विट्ज़रलैंड)", "रोम (इटली)", "विएना (ऑस्ट्रिया)", "हेग (नीदरलैंड)"],
+        correct: 0,
+        exp: "WHO का मुख्यालय जिनेवा (स्विट्ज़रलैंड) में है। इसकी स्थापना 7 अप्रैल 1948 को हुई थी।"
+      },
+      {
+        q: "12. रूस (Russia) की आधिकारिक मुद्रा कौन-सी है?",
+        options: ["यूरो", "रूबल (Ruble)", "दिनार", "डॉलर"],
+        correct: 1,
+        exp: "रूस की मुद्रा 'रूबल' है और रूस की राजधानी 'मॉस्को' है।"
+      },
+      {
+        q: "13. भारत में 'राष्ट्रीय हिंदी दिवस' किस तिथि को मनाया जाता है?",
+        options: ["10 जनवरी", "14 सितंबर", "26 नवंबर", "15 अगस्त"],
+        correct: 1,
+        exp: "14 सितंबर 1949 को संविधान सभा ने हिंदी को राजभाषा का दर्जा दिया था, इसलिए 14 सितंबर को राष्ट्रीय हिंदी दिवस मनाते हैं।"
+      },
+      {
+        q: "14. ऑस्ट्रेलिया की राष्ट्रीय राजधानी कौन-सी है?",
+        options: ["सिडनी", "मेलबर्न", "कैनबरा", "पर्थ"],
+        correct: 2,
+        exp: "ऑस्ट्रेलिया की राजधानी 'कैनबरा' है तथा इसकी मुद्रा ऑस्ट्रेलियाई डॉलर है।"
+      },
+      {
+        q: "15. उत्तर प्रदेश का एकमात्र राष्ट्रीय उद्यान 'दुधवा नेशनल पार्क' किस जिले में स्थित है?",
+        options: ["पीलीभीत", "लखीमपुर खीरी", "बहराइच", "सोनभद्र"],
+        correct: 1,
+        exp: "दुधवा राष्ट्रीय उद्यान उत्तर प्रदेश के लखीमपुर खीरी जिले में स्थित है।"
+      },
+      {
+        q: "16. 'विश्व जल दिवस' (World Water Day) किस दिन मनाया जाता है?",
+        options: ["22 मार्च", "22 अप्रैल", "22 मई", "5 जून"],
+        correct: 0,
+        exp: "प्रत्येक वर्ष 22 मार्च को विश्व जल दिवस मनाया जाता है।"
+      },
+      {
+        q: "17. चीन की आधिकारिक मुद्रा का नाम क्या है?",
+        options: ["येन", "रेनमिनबी (युआन)", "रिंगिट", "क्यात"],
+        correct: 1,
+        exp: "चीन की आधिकारिक मुद्रा 'रेनमिनबी' (जिसकी मुख्य इकाई युआन है) है। राजधानी बीजिंग है।"
+      },
+      {
+        q: "18. 'यूनेस्को' (UNESCO) का मुख्यालय कहाँ स्थित है?",
+        options: ["पेरिस (फ्रांस)", "लंदन (यूके)", "न्यूयॉर्क (यूएसए)", "जिनेवा (स्विट्ज़रलैंड)"],
+        correct: 0,
+        exp: "UNESCO का मुख्यालय पेरिस (फ्रांस) में स्थित है। इसकी स्थापना 1945 में हुई थी।"
+      },
+      {
+        q: "19. 'विश्व ओजोन दिवस' (World Ozone Day) किस तिथि को मनाया जाता है?",
+        options: ["16 सितंबर", "5 जून", "21 मार्च", "11 जुलाई"],
+        correct: 0,
+        exp: "ओजोन परत के संरक्षण हेतु मॉन्ट्रियल प्रोटोकॉल की याद में 16 सितंबर को ओजोन दिवस मनाया जाता है।"
+      },
+      {
+        q: "20. भूटान की राजधानी क्या है?",
+        options: ["थिम्फू", "पारो", "ढाका", "काठमांडू"],
+        correct: 0,
+        exp: "भूटान की राजधानी 'थिम्फू' है तथा इसकी मुद्रा 'न्गुलट्रम' (Ngultrum) है।"
+      },
+      {
+        q: "21. दक्षिण कोरिया की आधिकारिक मुद्रा कौन-सी है?",
+        options: ["येन", "वॉन (Won)", "युआन", "डॉलर"],
+        correct: 1,
+        exp: "दक्षिण कोरिया की मुद्रा 'वॉन' (South Korean Won) है और राजधानी 'सियोल' है।"
+      },
+      {
+        q: "22. भारत का प्रथम राष्ट्रीय उद्यान 'जिम कॉर्बेट' (वर्तमान रामगंगा नेशनल पार्क) कहाँ स्थित है?",
+        options: ["हिमाचल प्रदेश", "उत्तराखंड", "असम", "मध्य प्रदेश"],
+        correct: 1,
+        exp: "जिम कॉर्बेट नेशनल पार्क उत्तराखंड के नैनीताल/पौड़ी गढ़वाल में है। इसकी स्थापना 1936 में हैली नेशनल पार्क के रूप में हुई थी।"
+      },
+      {
+        q: "23. 'अंतर्राष्ट्रीय मानवाधिकार दिवस' (Human Rights Day) कब मनाया जाता है?",
+        options: ["10 दिसंबर", "1 दिसंबर", "24 अक्टूबर", "5 सितंबर"],
+        correct: 0,
+        exp: "संयुक्त राष्ट्र द्वारा 10 दिसंबर 1948 को मानवाधिकार घोषणा पत्र स्वीकार किए जाने के उपलक्ष्य में यह दिवस मनाया जाता है।"
+      },
+      {
+        q: "24. श्रीलंका की प्रशासनिक राजधानी कौन-सी है?",
+        options: ["कोलंबो", "कैंडी", "श्री जयवर्धनेपुरा कोट्टे", "गाले"],
+        correct: 2,
+        exp: "श्रीलंका की प्रशासनिक राजधानी 'श्री जयवर्धनेपुरा कोट्टे' है, जबकि वाणिज्यिक राजधानी 'कोलंबो' है।"
+      },
+      {
+        q: "25. सऊदी अरब की मुद्रा क्या है?",
+        options: ["दीनार", "रियाल (Riyal)", "दिरहम", "पाउंड"],
+        correct: 1,
+        exp: "सऊदी अरब की मुद्रा 'सऊदी रियाल' है तथा इसकी राजधानी 'रियाद' है।"
+      },
+      {
+        q: "26. 'कथकली' किस भारतीय राज्य का प्रसिद्ध शास्त्रीय नृत्य है?",
+        options: ["तमिलनाडु", "केरल", "कर्नाटक", "ओडिशा"],
+        correct: 1,
+        exp: "कथकली और मोहिनीअट्टम केरल राज्य के प्रसिद्ध शास्त्रीय नृत्य हैं।"
+      },
+      {
+        q: "27. भारत का राष्ट्रीय आदर्श वाक्य 'सत्यमेव जयते' किस उपनिषद से लिया गया है?",
+        options: ["कठोपनिषद", "छांदोग्य उपनिषद", "मुण्डकोपनिषद", "केनोपनिषद"],
+        correct: 2,
+        exp: "'सत्यमेव जयते' मुण्डकोपनिषद (Mundaka Upanishad) से लिया गया है।"
+      },
+      {
+        q: "28. 'विश्व एड्स दिवस' प्रतिवर्ष किस तारीख को मनाया जाता है?",
+        options: ["1 दिसंबर", "10 दिसंबर", "14 नवंबर", "24 मार्च"],
+        correct: 0,
+        exp: "एड्स के प्रति जागरूकता फैलाने हेतु प्रतिवर्ष 1 दिसंबर को विश्व एड्स दिवस मनाया जाता है।"
+      },
+      {
+        q: "29. मिस्र (Egypt) की राजधानी क्या है?",
+        options: ["अलेक्जेंड्रिया", "काहिरा (Cairo)", "खार्तूम", "त्रिपोली"],
+        correct: 1,
+        exp: "मिस्र की राजधानी 'काहिरा' है तथा मिस्र की मुद्रा 'इजिप्शियन पाउंड' है।"
+      },
+      {
+        q: "30. मलेशिया की राष्ट्रीय मुद्रा क्या है?",
+        options: ["रुपिया", "रिंगित (Ringgit)", "बाथ", "पेसो"],
+        correct: 1,
+        exp: "मलेशिया की मुद्रा 'मलेशियाई रिंगित' है तथा इसकी राजधानी 'कुआलालंपुर' है।"
+      },
+      {
+        q: "31. 'पृथ्वी दिवस' (World Earth Day) किस दिन आयोजित किया जाता है?",
+        options: ["22 मार्च", "22 अप्रैल", "5 जून", "21 मई"],
+        correct: 1,
+        exp: "पर्यावरण सुरक्षा के समर्थन के लिए प्रतिवर्ष 22 अप्रैल को पृथ्वी दिवस मनाया जाता है।"
+      },
+      {
+        q: "32. प्रसिद्ध 'केवलादेव घाना राष्ट्रीय पक्षी उद्यान' राजस्थान के किस जिले में है?",
+        options: ["जयपुर", "भरतपुर", "अलवर", "जोधपुर"],
+        correct: 1,
+        exp: "केवलादेव घाना पक्षी विहार राजस्थान के भरतपुर में स्थित है और यह साइबेरियन सारस के लिए जाना जाता है।"
+      },
+      {
+        q: "33. संयुक्त अरब अमीरात (UAE) की राजधानी कौन-सी है?",
+        options: ["दुबई", "शारजाह", "अबू धाबी", "अजमान"],
+        correct: 2,
+        exp: "UAE की राजधानी 'अबू धाबी' है तथा यहाँ की मुद्रा 'दिरहम' (Dirham) है।"
+      },
+      {
+        q: "34. यूनाइटेड किंगडम (UK / ब्रिटेन) की आधिकारिक मुद्रा क्या है?",
+        options: ["यूरो", "पाउंड स्टर्लिंग (Pound Sterling)", "डॉलर", "फ्रैंक"],
+        correct: 1,
+        exp: "ब्रिटेन की आधिकारिक मुद्रा 'पाउंड स्टर्लिंग' है और राजधानी 'लंदन' है।"
+      },
+      {
+        q: "35. भारत में 'राष्ट्रीय विज्ञान दिवस' किस वैज्ञानिक की खोज की स्मृति में 28 फरवरी को मनाया जाता है?",
+        options: ["डॉ. होमी भाभा", "सर सी. वी. रमन", "डॉ. एपीजे अब्दुल कलाम", "सत्येंद्र नाथ बोस"],
+        correct: 1,
+        exp: "सर सी. वी. रमन द्वारा 28 फरवरी 1928 को 'रमन प्रभाव' की खोज के उपलक्ष्य में यह दिवस मनाया जाता है।"
+      },
+      {
+        q: "36. 'विश्व बैंक' (World Bank) का मुख्यालय कहाँ स्थित है?",
+        options: ["वाशिंगटन डी.सी.", "जिनेवा", "न्यूयॉर्क", "मनीला"],
+        correct: 0,
+        exp: "विश्व बैंक तथा IMF दोनों का मुख्यालय वाशिंगटन डी.सी. (USA) में स्थित है।"
+      },
+      {
+        q: "37. 'कुचिपुड़ी' किस राज्य का प्रमुख शास्त्रीय नृत्य है?",
+        options: ["तमिलनाडु", "आंध्र प्रदेश", "ओडिशा", "केरल"],
+        correct: 1,
+        exp: "कुचिपुड़ी आंध्र प्रदेश का शास्त्रीय नृत्य है।"
+      },
+      {
+        q: "38. फ्रांस की राजधानी कौन-सी है?",
+        options: ["बर्लिन", "पेरिस", "रोम", "मैड्रिड"],
+        correct: 1,
+        exp: "फ्रांस की राजधानी 'पेरिस' है, जो सीन नदी के तट पर स्थित है। इसकी मुद्रा 'यूरो' है।"
+      },
+      {
+        q: "39. तुर्की (Türkiye) की आधिकारिक मुद्रा क्या है?",
+        options: ["लीरा (Lira)", "दिनार", "रियाल", "यूरो"],
+        correct: 0,
+        exp: "तुर्की की आधिकारिक मुद्रा 'तुर्की लीरा' (Turkish Lira) है और राजधानी 'अंकारा' है।"
+      },
+      {
+        q: "40. 'विश्व जनसंख्या दिवस' (World Population Day) कब मनाया जाता है?",
+        options: ["11 जुलाई", "5 जून", "15 अगस्त", "24 अक्टूबर"],
+        correct: 0,
+        exp: "जनसंख्या वृद्धि की चुनौतियों पर जागरूकता हेतु प्रतिवर्ष 11 जुलाई को विश्व जनसंख्या दिवस मनाया जाता है।"
+      },
+      {
+        q: "41. भारत की 'सिलिकॉन वैली' (Silicon Valley) के रूप में किस शहर को जाना जाता है?",
+        options: ["हैदराबाद", "पुणे", "बेंगलुरु", "चेन्नई"],
+        correct: 2,
+        exp: "भारत के सूचना प्रौद्योगिकी केंद्र बेंगलुरु (कर्नाटक) को सिलिकॉन वैली कहा जाता है।"
+      },
+      {
+        q: "42. कनाडा की राष्ट्रीय राजधानी कौन-सी है?",
+        options: ["टोरंटो", "मॉन्ट्रियल", "ओटावा (Ottawa)", "वैंकूवर"],
+        correct: 2,
+        exp: "कनाडा की राजधानी 'ओटावा' है तथा मुद्रा 'कनाडाई डॉलर' है।"
+      },
+      {
+        q: "43. विश्व का सबसे बड़ा डेल्टा 'सुंदरबन डेल्टा' किस प्रसिद्ध वन्यजीव के लिए जाना जाता है?",
+        options: ["एशियाई शेर", "रॉयल बंगाल टाइगर", "एक सींग वाला गैंडा", "हिम तेंदुआ"],
+        correct: 1,
+        exp: "सुंदरबन राष्ट्रीय उद्यान पश्चिम बंगाल में स्थित है और यह 'रॉयल बंगाल टाइगर' के लिए विश्व प्रसिद्ध है।"
+      },
+      {
+        q: "44. भारत में 'शिक्षक दिवस' (5 सितंबर) किसकी जयंती के उपलक्ष्य में मनाया जाता है?",
+        options: ["डॉ. सर्वपल्ली राधाकृष्णन", "पंडित जवाहरलाल नेहरू", "डॉ. राजेंद्र प्रसाद", "मौलाना आजाद"],
+        correct: 0,
+        exp: "भारत के प्रथम उपराष्ट्रपति और दूसरे राष्ट्रपति डॉ. सर्वपल्ली राधाकृष्णन के जन्मदिवस को शिक्षक दिवस के रूप में मनाया जाता है।"
+      },
+      {
+        q: "45. जर्मनी की वर्तमान मुद्रा क्या है?",
+        options: ["ड्यूश मार्क", "यूरो (Euro)", "पाउंड", "फ्रैंक"],
+        correct: 1,
+        exp: "जर्मनी यूरोपीय संघ का प्रमुख सदस्य है और इसकी वर्तमान मुद्रा 'यूरो' है। राजधानी 'बर्लिन' है।"
+      },
+      {
+        q: "46. भारतीय रिज़र्व बैंक (RBI) का राष्ट्रीयकरण किस वर्ष हुआ था?",
+        options: ["1935", "1947", "1949", "1950"],
+        correct: 2,
+        exp: "RBI की स्थापना 1 अप्रैल 1935 को हुई थी तथा इसका राष्ट्रीयकरण 1 जनवरी 1949 को किया गया था।"
+      },
+      {
+        q: "47. अंतर्राष्ट्रीय न्यायालय (International Court of Justice) का मुख्यालय कहाँ स्थित है?",
+        options: ["द हेग (नीदरलैंड)", "जिनेवा", "पेरिस", "न्यूयॉर्क"],
+        correct: 0,
+        exp: "ICJ का मुख्यालय द हेग (The Hague), नीदरलैंड के पीस पैलेस में स्थित है।"
+      },
+      {
+        q: "48. भारत में 'कारगिल विजय दिवस' किस तारीख को मनाया जाता है?",
+        options: ["26 जुलाई", "15 अगस्त", "16 दिसंबर", "23 मार्च"],
+        correct: 0,
+        exp: "वर्ष 1999 के कारगिल युद्ध में 'ऑपरेशन विजय' की सफलता की याद में 26 जुलाई को कारगिल विजय दिवस मनाया जाता है।"
+      },
+      {
+        q: "49. वियतनाम की राजधानी क्या है?",
+        options: ["हनोई", "हो ची मिन्ह सिटी", "विआंतियाने", "नोम पेन्ह"],
+        correct: 0,
+        exp: "वियतनाम की राजधानी 'हनोई' है और वियतनाम की आधिकारिक मुद्रा 'डोंग' (Dong) है।"
+      },
+      {
+        q: "50. इंडोनेशिया की आधिकारिक मुद्रा क्या है?",
+        options: ["रुपिया (Rupiah)", "रिंगित", "पेसो", "क्यात"],
+        correct: 0,
+        exp: "इंडोनेशिया की मुद्रा 'इंडोनेशियाई रुपिया' (Rupiah) है और इसकी नई घोषित राजधानी 'नुसंतारा' (Nusantara) है।"
+      }
+    ];
+
+    // Quiz State Variables
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let studentName = "";
+    let userAnswers = new Array(quizData.length).fill(null);
+    let questionTimer = null;
+    let secondsLeft = 60;
+    let totalSecondsElapsed = 0;
+    let overallTimerInterval = null;
+
+    // DOM Elements
+    const startScreen = document.getElementById("start-screen");
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
+    const leaderboardModal = document.getElementById("leaderboard-modal");
+    const studentNameInput = document.getElementById("student-name");
+    const nameError = document.getElementById("name-error");
+
+    const qCounter = document.getElementById("q-counter");
+    const timerBadge = document.getElementById("timer-badge");
+    const timerText = document.getElementById("timer-text");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options-container");
+    const explanationBox = document.getElementById("explanation-box");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    function startQuiz() {
+      const name = studentNameInput.value.trim();
+      if (!name) {
+        nameError.style.display = "block";
+        studentNameInput.focus();
+        return;
+      }
+      nameError.style.display = "none";
+      studentName = name;
+
+      startScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+      resultScreen.classList.add("hidden");
+      leaderboardModal.classList.add("hidden");
+
+      currentQuestionIndex = 0;
+      score = 0;
+      userAnswers = new Array(quizData.length).fill(null);
+      totalSecondsElapsed = 0;
+
+      clearInterval(overallTimerInterval);
+      overallTimerInterval = setInterval(() => {
+        totalSecondsElapsed++;
+      }, 1000);
+
+      loadQuestion(0);
+    }
+
+    function loadQuestion(index) {
+      clearInterval(questionTimer);
+      currentQuestionIndex = index;
+
+      const q = quizData[index];
+      qCounter.textContent = `प्रश्न ${index + 1} / ${quizData.length}`;
+      progressBar.style.width = `${((index + 1) / quizData.length) * 100}%`;
+
+      questionText.textContent = q.q;
+      optionsContainer.innerHTML = "";
+      explanationBox.style.display = "none";
+      explanationBox.className = "explanation-box";
+
+      prevBtn.disabled = index === 0;
+      if (index === quizData.length - 1) {
+        nextBtn.textContent = "सबमिट करें 🏁";
+      } else {
+        nextBtn.textContent = "अगला प्रश्न →";
+      }
+
+      const letters = ["A", "B", "C", "D"];
+      const existingAnswer = userAnswers[index];
+
+      q.options.forEach((opt, optIdx) => {
+        const optCard = document.createElement("div");
+        optCard.className = "option-card";
+        optCard.id = `option-${optIdx}`;
+
+        optCard.innerHTML = `
+          <div class="option-prefix">${letters[optIdx]}</div>
+          <div class="option-text">${opt}</div>
+        `;
+
+        if (existingAnswer !== null) {
+          optCard.classList.add("locked");
+          if (optIdx === q.correct) {
+            optCard.classList.add("correct");
+          }
+          if (existingAnswer.chosen === optIdx && !existingAnswer.isCorrect) {
+            optCard.classList.add("incorrect");
+          }
+        } else {
+          optCard.onclick = () => selectOption(optIdx);
+        }
+
+        optionsContainer.appendChild(optCard);
+      });
+
+      if (existingAnswer !== null) {
+        showExplanation(existingAnswer.isCorrect, q.exp, existingAnswer.isTimeout);
+        timerText.textContent = "--";
+        timerBadge.className = "timer-badge";
+      } else {
+        startQuestionTimer();
+      }
+    }
+
+    function startQuestionTimer() {
+      secondsLeft = 60;
+      updateTimerDisplay();
+
+      questionTimer = setInterval(() => {
+        secondsLeft--;
+        updateTimerDisplay();
+
+        if (secondsLeft <= 0) {
+          clearInterval(questionTimer);
+          handleTimeout();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      timerText.textContent = `${secondsLeft}s`;
+      timerBadge.className = "timer-badge";
+      if (secondsLeft <= 10) {
+        timerBadge.classList.add("danger");
+      } else if (secondsLeft <= 25) {
+        timerBadge.classList.add("warning");
+      } else {
+        timerBadge.classList.add("safe");
+      }
+    }
+
+    function selectOption(chosenIdx) {
+      clearInterval(questionTimer);
+      const q = quizData[currentQuestionIndex];
+      const isCorrect = (chosenIdx === q.correct);
+
+      if (isCorrect) {
+        score++;
+      }
+
+      userAnswers[currentQuestionIndex] = {
+        chosen: chosenIdx,
+        isCorrect: isCorrect,
+        isTimeout: false,
+        timeTaken: 60 - secondsLeft
+      };
+
+      const cards = optionsContainer.getElementsByClassName("option-card");
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].classList.add("locked");
+        cards[i].onclick = null;
+        if (i === q.correct) {
+          cards[i].classList.add("correct");
+        } else if (i === chosenIdx && !isCorrect) {
+          cards[i].classList.add("incorrect");
+        }
+      }
+
+      showExplanation(isCorrect, q.exp, false);
+    }
+
+    function handleTimeout() {
+      const q = quizData[currentQuestionIndex];
+      userAnswers[currentQuestionIndex] = {
+        chosen: null,
+        isCorrect: false,
+        isTimeout: true,
+        timeTaken: 60
+      };
+
+      const cards = optionsContainer.getElementsByClassName("option-card");
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].classList.add("locked");
+        cards[i].onclick = null;
+        if (i === q.correct) {
+          cards[i].classList.add("correct");
+        }
+      }
+
+      showExplanation(false, q.exp, true);
+
+      setTimeout(() => {
+        if (!quizScreen.classList.contains("hidden")) {
+          nextQuestion();
+        }
+      }, 2000);
+    }
+
+    function showExplanation(isCorrect, explanationText, isTimeout) {
+      explanationBox.style.display = "block";
+      if (isTimeout) {
+        explanationBox.className = "explanation-box wrong-alert";
+        explanationBox.innerHTML = `<strong>⏰ समय समाप्त!</strong> यह प्रश्न स्किप माना गया।<br><strong>व्याख्या:</strong> ${explanationText}`;
+      } else if (isCorrect) {
+        explanationBox.className = "explanation-box";
+        explanationBox.innerHTML = `<strong>✅ शाबाश! सही उत्तर।</strong><br><strong>व्याख्या:</strong> ${explanationText}`;
+      } else {
+        explanationBox.className = "explanation-box wrong-alert";
+        explanationBox.innerHTML = `<strong>❌ गलत उत्तर!</strong> सही उत्तर ऊपर हरे रंग में है।<br><strong>व्याख्या:</strong> ${explanationText}`;
+      }
+    }
+
+    function nextQuestion() {
+      if (userAnswers[currentQuestionIndex] === null) {
+        clearInterval(questionTimer);
+        userAnswers[currentQuestionIndex] = {
+          chosen: null,
+          isCorrect: false,
+          isTimeout: true,
+          timeTaken: 60 - secondsLeft
+        };
+      }
+
+      if (currentQuestionIndex < quizData.length - 1) {
+        loadQuestion(currentQuestionIndex + 1);
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestionIndex > 0) {
+        loadQuestion(currentQuestionIndex - 1);
+      }
+    }
+
+    function finishQuiz() {
+      clearInterval(questionTimer);
+      clearInterval(overallTimerInterval);
+
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      let correctCount = 0;
+      let wrongCount = 0;
+      let skippedCount = 0;
+
+      userAnswers.forEach((ans) => {
+        if (!ans || ans.chosen === null) {
+          skippedCount++;
+        } else if (ans.isCorrect) {
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+      });
+
+      const totalQuestions = quizData.length;
+      const percentage = Math.round((correctCount / totalQuestions) * 100);
+      const minutes = Math.floor(totalSecondsElapsed / 60);
+      const seconds = totalSecondsElapsed % 60;
+      const formattedTime = `${minutes}m ${seconds}s`;
+
+      document.getElementById("res-score").textContent = correctCount;
+      document.getElementById("res-student-name").textContent = `अभ्यर्थी: ${studentName}`;
+      document.getElementById("res-percent").textContent = `${percentage}%`;
+      document.getElementById("res-time").textContent = formattedTime;
+      document.getElementById("res-correct").textContent = correctCount;
+      document.getElementById("res-wrong").textContent = `${wrongCount + skippedCount} (गलत: ${wrongCount}, छूटे: ${skippedCount})`;
+
+      const now = new Date();
+      document.getElementById("res-date-time").textContent = `दिनांक: ${now.toLocaleDateString("hi-IN")} | समय: ${now.toLocaleTimeString("hi-IN", { hour: '2-digit', minute: '2-digit' })}`;
+
+      const resBadge = document.getElementById("res-badge");
+      if (percentage >= 80) {
+        resBadge.textContent = "🏆 उत्कृष्ट प्रदर्शन (Outstanding)";
+        resBadge.style.background = "#dcfce7";
+        resBadge.style.color = "#15803d";
+      } else if (percentage >= 60) {
+        resBadge.textContent = "👍 बहुत अच्छा (Good Job)";
+        resBadge.style.background = "#e0f2fe";
+        resBadge.style.color = "#0369a1";
+      } else if (percentage >= 40) {
+        resBadge.textContent = "📖 औसत - और सुधार करें (Average)";
+        resBadge.style.background = "#fef3c7";
+        resBadge.style.color = "#b45309";
+      } else {
+        resBadge.textContent = "⚠️ अधिक अभ्यास की आवश्यकता है";
+        resBadge.style.background = "#fee2e2";
+        resBadge.style.color = "#dc2626";
+      }
+
+      saveToLeaderboard({
+        name: studentName,
+        score: correctCount,
+        total: totalQuestions,
+        percent: percentage,
+        time: formattedTime,
+        seconds: totalSecondsElapsed,
+        date: now.toLocaleDateString("hi-IN")
+      });
+
+      renderLeaderboard();
+    }
+
+    function saveToLeaderboard(entry) {
+      let lb = [];
+      try {
+        const stored = localStorage.getItem("uppet_quiz_leaderboard");
+        if (stored) lb = JSON.parse(stored);
+      } catch (e) {
+        lb = [];
+      }
+
+      lb.push(entry);
+
+      lb.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return a.seconds - b.seconds;
+      });
+
+      if (lb.length > 25) lb = lb.slice(0, 25);
+      localStorage.setItem("uppet_quiz_leaderboard", JSON.stringify(lb));
+    }
+
+    function renderLeaderboard() {
+      const tbody = document.getElementById("leaderboard-body");
+      tbody.innerHTML = "";
+
+      let lb = [];
+      try {
+        const stored = localStorage.getItem("uppet_quiz_leaderboard");
+        if (stored) lb = JSON.parse(stored);
+      } catch (e) {
+        lb = [];
+      }
+
+      if (lb.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-muted);">कोई रिकॉर्ड नहीं मिला।</td></tr>`;
+        return;
+      }
+
+      lb.forEach((row, idx) => {
+        const tr = document.createElement("tr");
+        let rankClass = "";
+        let rankDisplay = idx + 1;
+        if (idx === 0) { rankClass = "rank-1"; rankDisplay = "🥇 1"; }
+        else if (idx === 1) { rankClass = "rank-2"; rankDisplay = "🥈 2"; }
+        else if (idx === 2) { rankClass = "rank-3"; rankDisplay = "🥉 3"; }
+
+        tr.innerHTML = `
+          <td class="rank-cell ${rankClass}">${rankDisplay}</td>
+          <td style="font-weight: 600;">${escapeHtml(row.name)}</td>
+          <td><strong>${row.score}</strong> / ${row.total}</td>
+          <td>${row.percent}%</td>
+          <td>${row.time}</td>
+          <td>${row.date}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function restartQuiz() {
+      resultScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+      studentNameInput.value = "";
+    }
+
+    function clearLeaderboard() {
+      if (confirm("क्या आप सचमुच पूरा लीडरबोर्ड इतिहास हटाना चाहते हैं?")) {
+        localStorage.removeItem("uppet_quiz_leaderboard");
+        renderLeaderboard();
+      }
+    }
+
+    function showLeaderboardFromStart() {
+      startScreen.classList.add("hidden");
+      leaderboardModal.classList.remove("hidden");
+
+      const tbody = document.getElementById("modal-leaderboard-body");
+      tbody.innerHTML = "";
+
+      let lb = [];
+      try {
+        const stored = localStorage.getItem("uppet_quiz_leaderboard");
+        if (stored) lb = JSON.parse(stored);
+      } catch (e) {
+        lb = [];
+      }
+
+      if (lb.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-muted); padding: 18px;">अभी तक कोई टेस्ट रिकॉर्ड नहीं है। पहला टेस्ट आप दें!</td></tr>`;
+        return;
+      }
+
+      lb.forEach((row, idx) => {
+        const tr = document.createElement("tr");
+        let rankClass = "";
+        let rankDisplay = idx + 1;
+        if (idx === 0) { rankClass = "rank-1"; rankDisplay = "🥇 1"; }
+        else if (idx === 1) { rankClass = "rank-2"; rankDisplay = "🥈 2"; }
+        else if (idx === 2) { rankClass = "rank-3"; rankDisplay = "🥉 3"; }
+
+        tr.innerHTML = `
+          <td class="rank-cell ${rankClass}">${rankDisplay}</td>
+          <td style="font-weight: 600;">${escapeHtml(row.name)}</td>
+          <td><strong>${row.score}</strong> / ${row.total}</td>
+          <td>${row.percent}%</td>
+          <td>${row.time}</td>
+          <td>${row.date}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function closeLeaderboardModal() {
+      leaderboardModal.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    }
+
+    function escapeHtml(string) {
+      if (!string) return "";
+      return String(string)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
